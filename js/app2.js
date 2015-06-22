@@ -19,22 +19,23 @@ randomNumberGenerator();
 
 
 function newGame() {
-        userGuess = 0;
-        finish = false;
-        $('#userGuess').val('');
-        $('#count').text(guessCount);
-        $('#guessList li').remove();
-        randomNumber = (Math.floor(Math.random() * 100) + 1);
-        setFeedback("Guess a number!");
-        console.log("it works! new secret number is " + randomNumber);
-    }
-    //  function setFeedback(feedback) {
-    //        $('#feedback').text(feedback);
-    //    }
+    userGuess = 0;
+    finish = false;
+    $('#userGuess').val('');
+    $('#count').text(guessCount);
+    $('#guessList li').remove();
+    randomNumber = (Math.floor(Math.random() * 100) + 1);
+    setFeedback("Guess a number!");
+    console.log("it works! new secret number is " + randomNumber);
+}
 
-// function setCount(count){
-//        $('#count').text(guessCount);
-//    }
+function setFeedback(feedback) {
+    $('#feedback').text(feedback);
+}
+
+function setCount(count) {
+    $('#count').text(guessCount);
+}
 
 function checkGuess() {
 
@@ -47,16 +48,14 @@ function checkGuess() {
             alert("Please enter a number.");
         } else if (userGuess < 1 || userGuess > 100) {
             alert("Try again with a number from 1 to 100!");
-        }
-        // else {
-        //     comparisonAmount();
-        //     console.log("userGuess = " + userGuess);
-        //     $('#userGuess').val('');
-        //     guessCount++;
-        //     setCount(guessCount);
-        //     $('ul#guessList').append("<li>" + userGuess + "</li>");
-        // }
-        else if (difference <= 99 && difference >= 75) {
+        } else {
+            comparisonAmount();
+            console.log("userGuess = " + userGuess);
+            $('#userGuess').val('');
+            guessCount++;
+            setCount(guessCount);
+            $('ul#guessList').append("<li>" + userGuess + "</li>");
+        } else if (difference <= 99 && difference >= 75) {
             if (userGuess > randomNumber) {
                 alert("You're freezing. Keep trying.");
             } else if (difference <= 74 && difference >= 50) {
